@@ -1,0 +1,51 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "org.jetbrains.kotlin.jvm" version "1.4.0-rc"
+}
+
+group "me.senseiju"
+version "1.3.0"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot:1.16.1-R0.1-SNAPSHOT"
+
+    implementation "me.mattstudios.utils:matt-framework-gui:2.0.2"
+    implementation "me.mattstudios.utils:matt-framework:1.4"
+
+    implementation "com.zaxxer:HikariCP:3.4.5"
+    implementation "org.xerial:sqlite-jdbc:3.32.3.2"
+    implementation "mysql:mysql-connector-java:8.0.21"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
+}
+
+shadowJar {
+    archiveFileName.set("InventoryRefund.jar")
+
+    relocate "me.mattstudios.mfgui", "me.senseiju.inventoryrefund.shaded.mfgui"
+    relocate "me.mattstudios.mf", "me.senseiju.inventoryrefund.shaded.mf"
+
+    //minimize()
+}
+
+task copyJarToServer(type: Copy) {
+    from shadowJar
+    into "H:/Game servers/Minecraft servers/servers/Plugin test servers/1.8.8/plugins/update"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include ("plugin.yml")
+        expand("version": project.version)
+    }
+}

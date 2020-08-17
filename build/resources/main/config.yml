@@ -1,0 +1,33 @@
+# InventoryRefund config
+#
+# If your require any support, create a conversation with me on MC-Market https://www.mc-market.org/members/206823/
+# or preferably on discord at SenseiJu#6692
+#
+# Check out my other plugins at https://www.mc-market.org/resources/authors/206823/
+
+# Select your database type
+# - SQLite
+# - MySQL
+databaseType: SQLite
+
+databaseName: ir_database
+
+mysql:
+  host: localhost
+  port: 3306
+  username: SenseiJu
+  password: SuperSecretPassword123!
+
+# Auto purging will automatically clear your database of old records to save space.
+# This is very useful for servers which use a KitPvP style.
+#
+# The interval is based on ticks, every second is equal to 20 ticks so use this when calculating your interval.
+# interval: 72000 = every hour
+#
+# Purging by time is the equivalent to using the in game command to purge the database. It uses the same format
+# and will purge if the time is longer than the specified time.
+# purgeByTime: 10w,5d,4h,3m,30s = 10 weeks, 4 days, 4 hours, 3 minutes, 30 seconds
+autoPurge:
+  enabled: true
+  interval: 72000
+  purgeByTime: 1h

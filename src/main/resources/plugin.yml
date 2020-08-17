@@ -1,0 +1,7 @@
+name: InventoryRefund
+version: ${version}
+api-version: "1.16"
+
+author: SenseiJu
+
+main: me.senseiju.inventoryrefund.InventoryRefund
